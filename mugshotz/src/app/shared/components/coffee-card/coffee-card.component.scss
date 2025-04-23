@@ -1,0 +1,105 @@
+.coffee-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    will-change: transform;
+    transform-style: preserve-3d;
+    
+    /* Fixed dimensions for consistent card sizes */
+    width: 280px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    
+    // Light effect element
+    .card-light-effect {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(254, 152, 0, 0.8) 0%, rgba(254, 152, 0, 0) 70%);
+      pointer-events: none; // Make sure it doesn't interfere with mouse events
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      mix-blend-mode: overlay; // Changed to overlay for better visibility
+      z-index: 20; // Ensure it's above other content
+      left: 50%;
+      top: 50%;
+    }
+    
+    
+    // Add this to make the card hover effect look better
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    img {
+      width: 100%;
+      height: 140px; /* Fixed height for images */
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transform: translateZ(20px); // Slight 3D effect for the image
+    }
+    
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: #333;
+      height: 35px; /* Fixed height for title */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    p {
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      flex-grow: 1; /* Let description take available space */
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+    
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #5c4d42;
+      margin: 10px 0;
+      height: 25px; /* Fixed height for price */
+    }
+    
+    .order-btn {
+      background-color: #5c4d42;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      margin-top: auto; /* Push button to bottom */
+      align-self: center;
+      width: fit-content;
+      
+      &:hover {
+        background-color: #7a6555;
+      }
+    }
+    
+    /* Wrapper for content to maintain proper layout */
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+    }
+  }

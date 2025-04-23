@@ -1,0 +1,26 @@
+/* app.component.scss */
+
+:host {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  /* Ensure router outlet takes full width */
+  router-outlet {
+    width: 100%;
+  }
+  
+  /* This is necessary to make children of router-outlet take full width */
+  ::ng-deep router-outlet + * {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Apply background to the entire app */
+  :host {
+    background-image: url('/assets/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }

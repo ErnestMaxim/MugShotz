@@ -1,0 +1,220 @@
+:host {
+    display: block;
+  }
+  
+  main {
+    width: 100%;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    background-image: url('/assets/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    
+    .hero-content {
+      padding: 0 5rem;
+      max-width: 600px;
+      
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+      
+      p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+      }
+      
+      .order-btn {
+        background-color: #1bbeaa;
+        color: white;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        
+        &:hover {
+          background-color: darken(#1bbeaa, 10%);
+        }
+      }
+    }
+  }
+  
+  /* Categories Section */
+  .categories {
+    background-color: #f5f0e8;
+    padding: 1.5rem 0;
+    
+    .category-container {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      
+      &:hover {
+        transform: translateY(-5px);
+      }
+      
+      .icon-container {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+      
+      span {
+        font-size: 0.9rem;
+        color: #3a2618;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  /* Products Sections */
+  .special-coffee, .special-dessert {
+    padding: 3rem 0;
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #3a2618;
+      font-weight: bold;
+      font-size: 1.75rem;
+    }
+    
+    .products-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .coffee-grid, .dessert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding: 0 2rem;
+    }
+    
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: white;
+      }
+      
+      &.prev {
+        left: 0;
+      }
+      
+      &.next {
+        right: 0;
+      }
+    }
+  }
+  
+  /* CTA Banner */
+  .cta-banner {
+    //background-image: url('/assets/images/coffee-beans.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 4rem 0;
+    color: white;
+    text-align: center;
+    
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+      
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+      }
+      
+      .discover-btn {
+        background-color: #8a4ca7;
+        color: white;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        
+        &:hover {
+          background-color: darken(#8a4ca7, 10%);
+        }
+      }
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .coffee-grid, .dessert-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero .hero-content {
+      padding: 0 2rem;
+    }
+    
+    .categories .category-container {
+      gap: 2rem;
+    }
+    
+    .coffee-grid, .dessert-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .categories .category-container {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    
+    .coffee-grid, .dessert-grid {
+      grid-template-columns: 1fr;
+    }
+  }

@@ -1,0 +1,9 @@
+<div class="coffee-card" *ngIf="coffee()">
+    <div class="card-content">
+        <img [src]="coffee().imageUrl" [alt]="coffee().name">
+        <h3>{{ coffee().name }}</h3>
+        <p>{{ coffee().description }}</p>
+        <p class="price">${{ coffee().price.toFixed(2) }}</p>
+        <button (click)="onOrderNow()" class="order-btn">Order Now</button>
+    </div>
+</div>

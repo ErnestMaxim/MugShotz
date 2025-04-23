@@ -1,0 +1,82 @@
+<app-header></app-header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome!</h1>
+            <p>We serve the richest coffee in the city!</p>
+            <button class="order-btn">Order Now</button>
+        </div>
+    </section>
+
+    <!-- Category Icons Section -->
+    <section class="categories">
+        <div class="category-container">
+            <div class="category-item">
+                <div class="icon-container">
+                    <img src="assets/images/icons/hot-coffee.png" alt="Hot Coffee">
+                </div>
+                <span>Hot Coffee</span>
+            </div>
+            <div class="category-item">
+                <div class="icon-container">
+                    <img src="assets/images/icons/cold-coffee.png" alt="Cold Coffee">
+                </div>
+                <span>Cold Coffee</span>
+            </div>
+            <div class="category-item">
+                <div class="icon-container">
+                    <img src="assets/images/icons/frappes.png" alt="Frappé Coffee">
+                </div>
+                <span>Frappé Coffee</span>
+            </div>
+            <div class="category-item">
+                <div class="icon-container">
+                    <img src="assets/images/icons/cake.png" alt="Cake">
+                </div>
+                <span>Cake</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section - Only if needed -->
+    <app-search (searchResults)="updateCoffees($event)"></app-search>
+
+    <!-- Special Coffee Section -->
+    <section class="special-coffee">
+        <h2>OUR SPECIAL COFFEE</h2>
+        <div class="products-container">
+            <div class="coffee-grid">
+                @for (coffee of coffeeList(); track coffee.id) {
+                <app-coffee-card [coffee]="coffee" (orderClicked)="handleOrderClick($event)">
+                </app-coffee-card>
+                }
+                @empty {
+                <p>No coffee found matching your search.</p>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Dessert Section - You can add this later -->
+    <section class="special-dessert">
+        <h2>OUR SPECIAL DESSERT</h2>
+        <div class="products-container">
+            <button class="nav-arrow prev">&#10094;</button>
+            <div class="dessert-grid">
+                <!-- Dessert items would go here -->
+                <p>Dessert section coming soon!</p>
+            </div>
+            <button class="nav-arrow next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2>Check out our best coffee beans</h2>
+            <button class="discover-btn">Discover More</button>
+        </div>
+    </section>
+</main>
