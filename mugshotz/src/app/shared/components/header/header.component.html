@@ -1,13 +1,30 @@
-<header>
-    <div class="logo">
-        <img [src]="'assets/images/logo.png'" alt="Coffee Shop Logo">
-    </div>
-    <nav>
-        <a routerLink="/" routerLinkActive="active">Home</a>
-        <a routerLink="/about" routerLinkActive="active">About</a>
-        <a routerLink="/details" routerLinkActive="active">Details</a>
-    </nav>
-    <div class="selected-coffee" *ngIf="selectedCoffee()">
-        <span class="coffee-icon">☕</span> Selected Coffee: {{ selectedCoffee() }}
+<header class="main-header" #headerElement>
+    <div class="container">
+        <div class="logo">
+            <a routerLink="/">
+                <img [src]="'assets/images/logo.png'" alt="MugShotz Logo">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">HOME</a>
+            <a routerLink="/coffee" routerLinkActive="active">COFFEE</a>
+            <a routerLink="/bakery" routerLinkActive="active">BAKERY</a>
+            <a routerLink="/about" routerLinkActive="active">ABOUT</a>
+        </nav>
+
+        <div class="search-transform" [class.active]="searchBarActive">
+            <div class="icon-container" (click)="toggleSearchBar()">
+                <svg #searchSvg *ngIf="!searchBarActive" class="search-icon" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+
+                <span *ngIf="searchBarActive" class="close-icon">&times;</span>
+            </div>
+            <input [(ngModel)]="searchTerm" placeholder="Search for coffee..." (input)="onSearch()" #searchInput
+                [class.active]="searchBarActive">
+        </div>
     </div>
 </header>

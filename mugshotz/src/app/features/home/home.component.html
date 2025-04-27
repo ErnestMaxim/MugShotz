@@ -1,82 +1,91 @@
 <app-header></app-header>
 
 <main>
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome!</h1>
-            <p>We serve the richest coffee in the city!</p>
-            <button class="order-btn">Order Now</button>
+        <div class="container">
+            <h1>Sip. Drip. <br> Repeat.</h1>
+            <p> Serves bold, handcrafted brews. <br>
+                Ethically sourced, roasted to thrill. <br>
+                Urban vibes with graffiti cool style.</p>
+            <a href="/coffee" class="cta-button">Explore Our Menu</a>
         </div>
     </section>
 
-    <!-- Category Icons Section -->
-    <section class="categories">
-        <div class="category-container">
-            <div class="category-item">
-                <div class="icon-container">
-                    <img src="assets/images/icons/hot-coffee.png" alt="Hot Coffee">
-                </div>
-                <span>Hot Coffee</span>
-            </div>
-            <div class="category-item">
-                <div class="icon-container">
-                    <img src="assets/images/icons/cold-coffee.png" alt="Cold Coffee">
-                </div>
-                <span>Cold Coffee</span>
-            </div>
-            <div class="category-item">
-                <div class="icon-container">
-                    <img src="assets/images/icons/frappes.png" alt="Frappé Coffee">
-                </div>
-                <span>Frappé Coffee</span>
-            </div>
-            <div class="category-item">
-                <div class="icon-container">
-                    <img src="assets/images/icons/cake.png" alt="Cake">
-                </div>
-                <span>Cake</span>
-            </div>
-        </div>
-    </section>
+    <div class="hero-divider-simple">
+        <div class="divider-line"></div>
+    </div>
 
-    <!-- Search Section - Only if needed -->
-    <app-search (searchResults)="updateCoffees($event)"></app-search>
-
-    <!-- Special Coffee Section -->
     <section class="special-coffee">
-        <h2>OUR SPECIAL COFFEE</h2>
-        <div class="products-container">
-            <div class="coffee-grid">
-                @for (coffee of coffeeList(); track coffee.id) {
-                <app-coffee-card [coffee]="coffee" (orderClicked)="handleOrderClick($event)">
-                </app-coffee-card>
-                }
-                @empty {
-                <p>No coffee found matching your search.</p>
-                }
+        <div class="section-header">
+            <h2>OUR SPECIAL COFFEE</h2>
+        </div>
+
+        <div class="coffee-container">
+            <div class="carousel-wrapper">
+                <div class="carousel-arrow prev" (click)="prevCoffee()" [class.disabled]="isCoffeePrevDisabled()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </div>
+
+                <div class="coffee-grid">
+                    @for (coffee of displayedCoffees(); track coffee.id) {
+                    <app-coffee-card [coffee]="coffee" (orderClicked)="handleOrderClick($event)"
+                        (favoriteToggled)="handleFavoriteToggle($event)">
+                    </app-coffee-card>
+                    }
+                    @empty {
+                    <p>No coffee found matching your search.</p>
+                    }
+                </div>
+
+                <div class="carousel-arrow next" (click)="nextCoffee()" [class.disabled]="isCoffeeNextDisabled()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Special Dessert Section - You can add this later -->
-    <section class="special-dessert">
-        <h2>OUR SPECIAL DESSERT</h2>
-        <div class="products-container">
-            <button class="nav-arrow prev">&#10094;</button>
-            <div class="dessert-grid">
-                <!-- Dessert items would go here -->
-                <p>Dessert section coming soon!</p>
+        <div class="special-dessert">
+            <div class="section-header">
+                <h2>OUR SPECIAL DESSERT</h2>
             </div>
-            <button class="nav-arrow next">&#10095;</button>
-        </div>
-    </section>
 
-    <!-- Call to Action Banner -->
-    <section class="cta-banner">
-        <div class="cta-content">
-            <h2>Check out our best coffee beans</h2>
-            <button class="discover-btn">Discover More</button>
+            <div class="coffee-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-arrow prev" (click)="prevDessert()" [class.disabled]="isDessertPrevDisabled()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </div>
+
+                    <div class="coffee-grid">
+                        @for (dessert of displayedDesserts(); track dessert.id) {
+                        <app-coffee-card [coffee]="convertDessertToCoffee(dessert)"
+                            (orderClicked)="handleOrderClick($event)" (favoriteToggled)="handleFavoriteToggle($event)">
+                        </app-coffee-card>
+                        }
+                        @empty {
+                        <p>No desserts found matching your search.</p>
+                        }
+                    </div>
+
+                    <div class="carousel-arrow next" (click)="nextDessert()" [class.disabled]="isDessertNextDisabled()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </main>
+
+<app-footer></app-footer>
+
+<app-cart></app-cart>

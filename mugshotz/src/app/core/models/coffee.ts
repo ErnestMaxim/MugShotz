@@ -4,4 +4,5 @@ export interface Coffee {
     description: string;
     price: number;
     imageUrl: string;
+    isFavorite?: boolean;
 }

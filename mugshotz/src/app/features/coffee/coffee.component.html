@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="coffee-page">
+    <div class="container">
+        <h1 class="page-title">Our Coffee Selection</h1>
+
+        <div class="coffee-grid">
+            @for (coffee of coffees; track coffee.id) {
+            <app-coffee-card [coffee]="coffee" (orderClicked)="handleOrderClick($event)">
+            </app-coffee-card>
+            }
+            @empty {
+            <p class="no-results">No coffee found matching your search.</p>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Footer Component -->
+<app-footer></app-footer>
+
+<!-- Order Popup Component -->
+<app-order-popup [selectedItemName]="selectedItemName()"></app-order-popup>
+
+<!-- Shopping Cart Component -->
+<app-cart></app-cart>

@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<div class="bakery-page">
+    <div class="container">
+        <h1 class="page-title">Our Dessert Collection</h1>
+
+        <div class="dessert-grid">
+            @for (dessert of desserts; track dessert.id) {
+            <app-coffee-card [coffee]="convertDessertToCoffee(dessert)" (orderClicked)="handleOrderClick($event)">
+            </app-coffee-card>
+            }
+            @empty {
+            <p class="no-results">No desserts found matching your search.</p>
+            }
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+<app-order-popup [selectedItemName]="selectedItemName()"></app-order-popup>
+
+<app-cart></app-cart>

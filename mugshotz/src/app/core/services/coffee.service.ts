@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Coffee } from '../models/coffee';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,178 +9,136 @@ export class CoffeeService {
   private coffeeList: Coffee[] = [
     {
       id: 1,
-      name: 'Espresso',
-      description: 'Strong black coffee made by forcing steam through ground coffee beans',
+      name: 'Flat White',
+      description: 'The flat white is a drink that is very much in fashion among coffee lovers',
       price: 3.50,
-      imageUrl: 'assets/images/espresso.jpg'
+      imageUrl: 'assets/images/coffee/flat_white.jpg',
+      isFavorite: false
     },
     {
       id: 2,
       name: 'Americano',
-      description: 'Espresso diluted with hot water, similar strength to drip coffee but different flavor',
-      price: 3.75,
-      imageUrl: 'assets/images/americano.jpg'
+      description: 'Americano is a delicious, full-bodied long speciality coffee',
+      price: 3.99,
+      imageUrl: 'assets/images/coffee/americano.jpg',
+      isFavorite: false
     },
     {
       id: 3,
-      name: 'Cappuccino',
-      description: 'Equal parts espresso, steamed milk, and milk foam',
+      name: 'Iced Coffee',
+      description: 'Chilled espresso with cold milk over ice for a refreshing coffee break',
       price: 4.25,
-      imageUrl: 'assets/images/cappuccino.jpg'
+      imageUrl: 'assets/images/coffee/icedcoffee.jpg',
+      isFavorite: false
     },
     {
       id: 4,
-      name: 'Latte',
-      description: 'Espresso with steamed milk and a small layer of foam on top',
-      price: 4.50,
-      imageUrl: 'assets/images/latte.jpg'
+      name: 'Cortado',
+      description: 'The perfect blend of aromatic espresso and velvety milk foam',
+      price: 3.25,
+      imageUrl: 'assets/images/coffee/cortado.jpg',
+      isFavorite: false
     },
     {
       id: 5,
-      name: 'Mocha',
-      description: 'Espresso with chocolate syrup and steamed milk, topped with whipped cream',
-      price: 4.75,
-      imageUrl: 'assets/images/mocha.jpg'
+      name: 'Espresso',
+      description: 'Strong black coffee made by forcing steam through ground coffee beans',
+      price: 2.99,
+      imageUrl: 'assets/images/coffee/espresso.jpg',
+      isFavorite: false
     },
     {
       id: 6,
-      name: 'Macchiato',
-      description: 'Espresso "stained" with a small amount of milk or foam',
-      price: 4.00,
-      imageUrl: 'assets/images/macchiato.jpg'
+      name: 'Cappuccino',
+      description: 'Equal parts espresso, steamed milk, and milk foam for a perfect balance',
+      price: 4.50,
+      imageUrl: 'assets/images/coffee/cappuccino.jpg',
+      isFavorite: false
     },
     {
       id: 7,
-      name: 'Flat White',
-      description: 'Espresso with steamed milk and minimal foam, stronger than a latte',
-      price: 4.50,
-      imageUrl: 'assets/images/flat-white.jpg'
+      name: 'Biscuit latte',
+      description: 'Cult cocoa cookie as a base for creamy sweet latte macchiato',
+      price: 4.75,
+      imageUrl: 'assets/images/coffee/biscuit_latte.jpg',
+      isFavorite: false
     },
     {
       id: 8,
-      name: 'Cold Brew',
-      description: 'Coffee brewed with cold water over 12-24 hours, resulting in a smooth, less acidic flavor',
-      price: 4.50,
-      imageUrl: 'assets/images/cold-brew.jpg'
-    },
-    {
-      id: 9,
-      name: 'Affogato',
-      description: 'A scoop of vanilla ice cream "drowned" with a shot of hot espresso',
-      price: 5.50,
-      imageUrl: 'assets/images/affogato.jpg'
-    },
-    {
-      id: 10,
-      name: 'Turkish Coffee',
-      description: 'Finely ground coffee beans boiled in a pot, served unfiltered',
-      price: 4.25,
-      imageUrl: 'assets/images/turkish-coffee.jpg'
-    },
-    {
-      id: 11,
-      name: 'Irish Coffee',
-      description: 'Hot coffee, Irish whiskey, and sugar, topped with cream',
-      price: 6.50,
-      imageUrl: 'assets/images/irish-coffee.jpg'
-    },
-    {
-      id: 12,
-      name: 'Cortado',
-      description: 'Equal parts espresso and warm milk, reducing the acidity',
-      price: 4.00,
-      imageUrl: 'assets/images/cortado.jpg'
-    },
-    {
-      id: 13,
-      name: 'Ristretto',
-      description: 'A "restricted" shot of espresso using less water, resulting in a more concentrated flavor',
-      price: 3.50,
-      imageUrl: 'assets/images/ristretto.jpg'
-    },
-    {
-      id: 14,
-      name: 'Vienna Coffee',
-      description: 'Coffee or espresso topped with whipped cream',
-      price: 4.75,
-      imageUrl: 'assets/images/vienna-coffee.jpg'
-    },
-    {
-      id: 15,
-      name: 'Bulletproof Coffee',
-      description: 'Coffee blended with grass-fed butter and MCT oil',
-      price: 5.50,
-      imageUrl: 'assets/images/bulletproof-coffee.jpg'
-    },
-    {
-      id: 16,
-      name: 'French Press',
-      description: 'Coffee brewed by steeping grounds in hot water and pressing them out',
-      price: 4.00,
-      imageUrl: 'assets/images/french-press.jpg'
-    },
-    {
-      id: 17,
-      name: 'Pour Over',
-      description: 'Hot water poured over coffee grounds in a filter, creating a clean, bright cup',
-      price: 4.25,
-      imageUrl: 'assets/images/pour-over.jpg'
-    },
-    {
-      id: 18,
-      name: 'Nitro Cold Brew',
-      description: 'Cold brew coffee infused with nitrogen for a creamy, stout-like texture',
-      price: 5.00,
-      imageUrl: 'assets/images/nitro-cold-brew.jpg'
-    },
-    {
-      id: 19,
-      name: 'Caramel Macchiato',
-      description: 'Vanilla-flavored espresso with caramel drizzle and steamed milk',
-      price: 5.25,
-      imageUrl: 'assets/images/caramel-macchiato.jpg'
-    },
-    {
-      id: 20,
-      name: 'Vietnamese Coffee',
-      description: 'Strong coffee dripped through a metal filter and mixed with sweetened condensed milk',
-      price: 4.75,
-      imageUrl: 'assets/images/vietnamese-coffee.jpg'
+      name: 'Macchiato',
+      description: 'Espresso with a small amount of frothed milk for subtle sweetness',
+      price: 3.95,
+      imageUrl: 'assets/images/coffee/espresso_macchiato.jpg',
+      isFavorite: false
     }
   ];
 
   private selectedCoffeeSignal = signal<string>('');
+  
+  
+  private searchResultsSubject = new BehaviorSubject<Coffee[]>(this.sortedCoffeeList());
+  public searchResults$ = this.searchResultsSubject.asObservable();
 
-  /*
-    Returns the complete list of coffees
-  */
-  getCoffees(): Coffee[]{
-    return this.coffeeList;
+  
+  getCoffees(): Coffee[] {
+    return this.sortedCoffeeList();
+  }
+  
+  
+  private sortedCoffeeList(): Coffee[] {
+    
+    return [...this.coffeeList].sort((a, b) => {
+      
+      if (a.isFavorite && !b.isFavorite) return -1;
+      if (!a.isFavorite && b.isFavorite) return 1;
+      
+      
+      return a.name.localeCompare(b.name);
+    });
   }
 
-  /*
-    Filters the coffee list based on a search term, matching coffee names that include the term (case-insensitive)
-    If the search term is empty, it returns the full list
-  */
+  
   searchCoffees(term: string): Coffee[] {
-    if( !term.trim()){
-      return this.coffeeList;
+    let results: Coffee[];
+    
+    if (!term.trim()) {
+      results = this.sortedCoffeeList();
+    } else {
+      results = this.coffeeList
+        .filter(coffee => coffee.name.toLowerCase().includes(term.toLowerCase()))
+        .sort((a, b) => {
+          
+          if (a.isFavorite && !b.isFavorite) return -1;
+          if (!a.isFavorite && b.isFavorite) return 1;
+          
+          
+          return a.name.localeCompare(b.name);
+        });
     }
-    return this.coffeeList.filter(coffee =>
-      coffee.name.toLowerCase().includes(term.toLowerCase())
-    );
+    
+    
+    this.searchResultsSubject.next(results);
+    
+    return results;
+  }
+  
+  
+  toggleFavorite(id: number, isFavorite: boolean): void {
+    const index = this.coffeeList.findIndex(coffee => coffee.id === id);
+    if (index !== -1) {
+      this.coffeeList[index].isFavorite = isFavorite;
+      
+      
+      this.searchResultsSubject.next(this.sortedCoffeeList());
+    }
   }
 
-  /*
-    Updates the selected coffee signal with a new coffee name
-  */
-  selectCoffee(name: string): void{
+  
+  selectCoffee(name: string): void {
     this.selectedCoffeeSignal.set(name);
   }
 
-  /*
-    Returns the signal that tracks the selected coffee, allowing components to subscribe to selection changes
-  */
+  
   getSelectedCoffee() {
     return this.selectedCoffeeSignal;
   }
